@@ -12,5 +12,6 @@
 */
 
 Route::get('/', function () {
+    dd(app(\App\Services\MovieService::class));
     return view('welcome');
 });
