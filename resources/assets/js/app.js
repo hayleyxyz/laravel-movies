@@ -1,22 +1,23 @@
+(function() {
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+    let genres = document.querySelectorAll('.genres > *');
+    let movies = document.querySelectorAll('.movie');
 
-require('./bootstrap');
+    let genreClickHandler = (event) => {
+        let selectedGenre = event.target.textContent;
 
-window.Vue = require('vue');
+        movies.forEach(movie => {
+           let movieGenres = JSON.parse(movie.dataset.genres);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+           if(movieGenres.indexOf(selectedGenre) === -1) {
+               movie.classList.add('hide');
+           }
+           else {
+               movie.classList.remove('hide');
+           }
+        });
+    };
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+    genres.forEach(genre => genre.addEventListener('click', genreClickHandler));
 
-const app = new Vue({
-    el: '#app'
-});
+})();

@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->singleton(InternetMovieDBService::class, function() {
-            return new InternetMovieDBService();
+            return new InternetMovieDBService(config('imdb.api_key'));
         });
     }
 
